@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
+</head>
+<body>
+
+<div class="container">
+
+<h2>Register</h2>
+
+<form method="POST">
+    Full Name: <input type="text" name="name" required><br><br>
+
+    Sex:
+    <input type="radio" name="sex" value="Male" required> Male
+    <input type="radio" name="sex" value="Female"> Female
+    <br><br>
+
+    DOB: <input type="date" name="dob" required><br><br>
+
+    Username: <input type="text" name="username" required><br><br>
+    Password: <input type="password" name="password" required><br><br>
+
+    <button type="submit">Register</button>
+</form>
+
+<a href="/login" class="btn btn-link">Login</a>
+
+</div>
+
+{% if msg %}
+<script>
+swal("Success", "{{ msg }}", "success")
+.then(() => { window.location.href = "/login"; });
+</script>
+{% endif %}
+</body>
+</html>

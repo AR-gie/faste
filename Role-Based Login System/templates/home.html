@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="home-container">
+
+    <div class="home-header">
+        <h2>Welcome {{ session.username }}!</h2>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    {% if admin %}
+    <!-- admin -->
+        <h3 class="admin-title">List of Users</h3>
+
+        <table class="admin-table">
+            <tr>
+                <th>Account ID</th>
+                <th>Full Name</th>
+                <th>Sex</th>
+                <th>DOB</th>
+                <th>Username</th>
+                <th>Password</th>
+            </tr>
+
+            {% for u in users %}
+            <tr>
+                <td>{{ u.acctno }}</td>
+                <td>{{ u.name }}</td>
+                <td>{{ u.sex }}</td>
+                <td>{{ u.dob }}</td>
+                <td>{{ u.username }}</td>
+                <td>{{ u.password }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+    <!-- user -->
+        <h3>User Profile</h3>
+
+        <div class="profile-grid">
+
+            <div class="profile-group">
+                <label>Full Name</label>
+                <input type="text" value="{{ user.name }}">
+            </div>
+
+            <div class="profile-group">
+                <label>Sex</label>
+
+                <label>
+                    <input type="radio" name="sex" value="Male"
+                        {% if user.sex == 'Male' %}checked{% endif %}>
+                    Male
+                </label>
+
+                <label>
+                    <input type="radio" name="sex" value="Female"
+                        {% if user.sex == 'Female' %}checked{% endif %}>
+                    Female
+                </label>
+            </div>
+
+            <div class="profile-group">
+                <label>Date of Birth</label>
+                <input type="date" value="{{ user.dob }}">
+            </div>
+
+            <div class="profile-group">
+                <label>Username</label>
+                <input type="text" value="{{ user.username }}">
+            </div>
+
+            <div class="profile-group">
+                <label>Password</label>
+                <input type="text" name="password" value="{{ user.password }}">
+            </div>
+
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

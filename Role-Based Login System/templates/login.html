@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
+</head>
+<body>
+
+<div class="container">
+
+<h2>Login</h2>
+
+<form method="POST">
+    Username: <input type="text" name="username" required><br><br>
+    Password: <input type="password" name="password" required><br><br>
+    <button type="submit">Login</button>
+</form>
+
+<a href="/register" class="btn btn-link">Register</a>
+
+</div>
+
+{% if msg %}
+<script>
+swal("Error", "{{ msg }}", "error");
+</script>
+{% endif %}
+</body>
+</html>
